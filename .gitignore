@@ -1,0 +1,51 @@
+# Arquivos auxiliares do LaTeX gerados durante a compilação
+*.aux
+*.bbl
+*.blg
+*.brf
+*.bcf
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.lot
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.run.xml
+*.synctex.gz
+*.vrb
+
+# Arquivos de Sistema Operacional
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Arquivos temporários de editores
+.idea/
+.vscode/
+*.swp
+*~
+
+# =========================================
+# Arquivos de Runtime e Dados do Usuário
+# =========================================
+
+# Dados específicos do usuário
+opencode.json
+base/
+examples/
+
+# Outputs gerados em runtime pela IA
+vagas/
+overview.md
+
+
