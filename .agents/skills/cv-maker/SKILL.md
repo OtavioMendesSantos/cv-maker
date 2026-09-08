@@ -61,6 +61,21 @@ Siga este passo a passo rigorosamente:
 - Se o arquivo estiver vazio, crie a estrutura de cabeçalho e a tabela.
 - Insira uma nova linha preenchendo: Data, Vaga, Empresa, Arquivo, PDF, Tags (máximo de 2 a 3 tags que façam sentido para a vaga, reaproveitando termos como Backend, Fullstack, Node.js, Go) e Match (por último).
 
+### 9. Cadastro no Hirely
+- Quando o usuário pedir para adicionar a vaga no Hirely (ou logar à aplicação), registre a candidatura usando a ferramenta `hirely-backend_insert_application`.
+- **Extraia e mapeie cada campo do input do usuário sempre que possível**, em vez de pedir dados que ele já forneceu:
+  - `company` e `role` → obrigatórios; retire do nome da vaga/empresa informados.
+  - `url` → o link da vaga fornecido.
+  - `location` → cidade, remoto, híbrido etc., citados no texto da vaga.
+  - `contractType` → CLT, PJ, INTERNSHIP ou OTHER, se mencionado (Home Office não é tipo de contrato; use OTHER quando não houver regime explícito).
+  - `salaryRange` → faixa salarial, se informada.
+  - `appliedAt` → data de hoje em RFC3339, ex: `2026-09-08T00:00:00Z`.
+  - `status` → use o padrão `TO_APPLY`, a menos que o usuário indique outro.
+  - `tagIds` → se já existirem tags no `hirely-backend_list_tags` que se encaixem na vaga, use-as.
+- **Descrição (`description`):** envie de forma "mais crua", ou seja, reproduza o texto da vaga o mais próximo possível do original (atividades, requisitos, diferenciais), sem reescrever nem resumir. Só faça correções quando algo estiver claramente errado (ex: texto quebrado, HTML, campos invertidos).
+- **Notas (`notes`):** use este campo para observações que não fazem parte da descrição crua — por exemplo, análise ATS, gaps de experiência, pontos de atenção, diferenças entre o CV e a vaga, ou avisos de alinhamento de expectativas.
+- Após inserir, informe ao usuário o que foi registrado (empresa, vaga, status) e o ID da candidatura criado.
+
 ## Estrutura Padrão do `overview.md`
 
 ```markdown
