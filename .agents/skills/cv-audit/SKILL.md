@@ -62,6 +62,8 @@ Antes de reescrever, pergunte tudo o que for necessário para valorizar o currí
 - Idiomas e nível verdadeiro de domínio.
 - Diferenciais que não aparecem no currículo.
 
+**Base de fatos (`historias.md`):** Antes de perguntar, consulte `historias.md` (ver skill `historias`) para recuperar números, conquistas e experiências já relatados em interações anteriores; não repita perguntas já respondidas. Ao longo da auditoria, registre em `historias.md` toda informação nova revelada pelo usuário, marcando o que ainda precisa ser confirmado.
+
 Se a pessoa não souber números exatos, ajude a estimar resultados de forma responsável, deixando claro que nada pode ser inventado. **Aguarde as respostas antes de produzir a versão final.**
 
 ### ETAPA 3 — Reescrita Completa
@@ -102,10 +104,12 @@ Após receber as respostas, reescreva o CV base completo, contendo quando aplic�
 #### Diretório de saída
 
 - Crie o diretório `auditorias/` na raiz do projeto (se não existir).
-- Salve o resultado da auditoria em um arquivo nesta pasta, usando a nomenclatura:
-  `{slug-nome}-auditoria-CV-{YYMMDD}.md` (ex: `otavio-auditoria-CV-260908.md`).
+- Para cada auditoria, crie uma subpasta única com carimbo de data e hora no momento da criação, no formato `auditorias/{YYMMDDHHMM}/` (ex: `auditorias/2609161205/`).
+- Salve o resultado da auditoria dentro dessa subpasta, usando o mesmo carimbo na nomenclatura:
+  `{slug-nome}-auditoria-CV-{YYMMDDHHMM}.md` (ex: `auditorias/2609161205/otavio-auditoria-CV-2609161205.md`).
+- Use o mesmo carimbo `{YYMMDDHHMM}` também nos arquivos auxiliares (`.tex`, `.pdf`), mantendo tudo na mesma subpasta.
 - **Não modifique os arquivos-base** (`base/cv.md`, `.tex` base) nem crie arquivos em `vagas/` (isso é do `cv-maker`).
-- Se for feita uma reescrita em LaTeX, salve também nessa pasta e recompile com `pdflatex`, revisando os logs em busca de avisos graves ou erros.
+- Se for feita uma reescrita em LaTeX, salve também nessa subpasta e recompile com `pdflatex`, revisando os logs em busca de avisos graves ou erros.
 
 ### ETAPA 4 — Parecer Final
 

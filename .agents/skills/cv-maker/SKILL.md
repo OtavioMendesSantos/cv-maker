@@ -29,8 +29,10 @@ Siga este passo a passo rigorosamente:
 - Se o Match Score for **< 80%**, prossiga para o próximo passo.
 
 ### 2. Levantamento de Informações e Dúvidas
+- Consulte `historias.md` (ver skill `historias`) para recuperar fatos já relatados pelo usuário em interações anteriores (números, conquistas, preferências, localidade) e evitar repetir perguntas.
 - Identifique os "Gaps": quais palavras-chave obrigatórias a vaga pede que o CV não tem?
 - Pergunte ao usuário sobre os Gaps encontrados para confirmar se ele tem a experiência ou se devemos focar apenas nos pontos fortes existentes. (Aguarde a resposta se necessário).
+- Registre em `historias.md` toda informação nova que o usuário revelar durante as perguntas.
 
 ### 3. Criação de Arquivos e Diretórios
 - Crie uma nova pasta para a vaga: `vagas/{YYMMDD}-{EMPRESA}/` (Ex: `vagas/260907-software/`). Use a data em que o currículo é criado para `YYMMDD`.
