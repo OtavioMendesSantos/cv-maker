@@ -1,130 +1,101 @@
 ---
 name: cv-audit
-description: Audita e reescreve o currículo base do usuário de forma crítica e independente de uma vaga específica. Use quando o usuário pedir para analisar, criticar, avaliar, auditar, diagnosticar ou reescrever o próprio currículo, identificar pontos fracos, gaps, aderência a cargos, ou melhorar a versão geral do CV (não para criar uma versão tailorada para uma vaga — isso é o cv-maker). Não use para vagas específicas.
+description: Audita e propõe uma reescrita do currículo base sem depender de uma vaga específica e sem modificar `base/`. Use para diagnosticar o CV e melhorar sua versão geral. Se `base/cv.md` não existir, use `onboarding`; para uma vaga concreta, use `cv-maker`.
 ---
 
-# CV Audit Skill
+# CV Audit
 
-## Quando usar esta Skill
+Produza um currículo base factual, claro e reutilizável. A auditoria deve separar problemas de conteúdo, estrutura e apresentação. Não use uma vaga específica como referência; use o cargo alvo informado pelo usuário.
 
-Use quando o usuário quiser **melhorar o currículo base** (não o de uma vaga específica): pedir uma análise crítica, avaliação, auditoria, diagnóstico, nota, reescrita, ou parecer sincero sobre o perfil. Difere do `cv-maker`, que cria um currículo tailorado para uma vaga.
+## Regras essenciais
 
-## Princípios Básicos
+- Nunca invente cargo, data, ferramenta, formação, responsabilidade, resultado ou métrica.
+- Consulte `historias.md`, quando existir, antes de perguntar. Registre fatos novos conforme a skill `historias`.
+- Aplique a skill `humanizer` ao texto do currículo.
+- Trate `base/cv.md` como fonte factual principal. Use `historias.md` como complemento. Quando houver conflito, mostre o conflito e confirme com o usuário.
+- Não transforme conhecimento acadêmico ou estudo pessoal em experiência profissional.
+- Não avalie senioridade apenas por tempo de carreira. Considere autonomia, escopo, complexidade e resultados comprovados.
+- Não prometa compatibilidade total com ATS. Valide estrutura, texto extraível e riscos conhecidos de parsing.
 
-1. **Nunca minta:** Jamais invente informações, resultados, competências, cargos, datas, ferramentas, formações ou experiências. Sempre diferencie experiência comprovada de conhecimento básico ou acadêmico.
-2. **Seja sincero, não gentil:** Seja criterioso e direto. Diga claramente quando algo prejudica o candidato ou quando o perfil não está qualificado para um cargo. O objetivo não é elogiar, é aumentar as chances reais de contratação.
-3. **Fonte de verdade:** Trabalhe sobre o CV base do usuário (geralmente `base/cv.md` ou o `.tex` base em `base/`). Modifique esses arquivos-base quando reescrever — **não crie arquivos por vaga** (isso é do `cv-maker`).
-4. **Escrita Natural (Humanizer):** Aplique sempre as regras da skill `humanizer`. Evite jargões de IA, clichês e voz passiva.
-5. **Não invente na reescrita:** Antes de reescrever, pergunte sobre informações que podem valorizar o currículo (resultados, escalas, equipes). Aguarde respostas quando precisar.
+## Pré-condição
 
-## Fluxo de Execução
+`base/cv.md` precisa existir. Se estiver ausente, use a skill `onboarding` e só inicie a auditoria depois que o usuário aprovar e criar a base inicial.
 
-Siga rigorosamente as etapas abaixo.
+Durante a auditoria, trate todo o diretório `base/` como somente leitura. Salve qualquer reescrita em `auditorias/` para comparação.
 
-### ETAPA 1 — Diagnóstico Crítico
+## 1. Diagnóstico
 
-Leia o CV base do usuário e apresente uma avaliação completa:
+Leia o documento inteiro e apresente:
 
-- **Nota geral** de 0 a 10.
-- **Primeira impressão** causada no recrutador.
-- **Pontos fortes reais.**
-- **Pontos fracos** e problemas que podem gerar reprovação.
-- **Informações importantes faltando.**
-- **Trechos genéricos, vagos ou pouco confiáveis.**
-- **Experiências mal explicadas ou subaproveitadas.**
-- **Problemas de organização, clareza, português, datas ou formatação.**
-- **Competências sem evidências práticas.**
-- **Conteúdos que devem ser excluídos** (ex: CPF, RG, estado civil, foto, endereço completo).
-- **Possíveis incoerências ou sinais de alerta.**
-- **Aderência ao cargo/vaga pretendida.**
-- **Compatibilidade com ATS** e palavras-chave ausentes.
+- nota geral de 0 a 10, com justificativa;
+- primeira impressão em uma leitura rápida;
+- pontos fortes sustentados por fatos;
+- problemas que podem causar descarte;
+- informações ausentes, contraditórias ou difíceis de defender;
+- experiências subaproveitadas e competências sem evidência;
+- clareza, ordem das seções, cronologia, português e consistência;
+- adequação ao cargo alvo e termos relevantes que faltam;
+- riscos de parsing ATS, incluindo colunas, tabelas, caixas de texto, cabeçalho/rodapé, imagens, ícones e PDF sem texto extraível;
+- conteúdo que deve sair, como foto, documentos, estado civil e endereço completo.
 
-Não suavize problemas importantes; diga claramente o que está prejudicando o currículo.
+Não confunda aparência com qualidade do conteúdo. Um layout limpo não compensa bullets vagos, e um bom histórico pode perder força em um documento difícil de ler.
 
-### ETAPA 2 — Perguntas Estratégicas
+## 2. Perguntas de alto impacto
 
-Antes de reescrever, pergunte tudo o que for necessário para valorizar o currículo, com perguntas **específicas para cada experiência** (evite perguntas genéricas):
+Antes da reescrita, faça perguntas específicas para cada experiência. Pergunte somente quando a resposta puder mudar o currículo. Exemplos:
 
-- Tamanho das equipes lideradas.
-- Metas e resultados alcançados.
-- Crescimento de vendas ou produtividade.
-- Redução de custos, erros ou prazos.
-- Volume de atendimentos, projetos, clientes ou processos.
-- Sistemas, ferramentas e tecnologias utilizadas.
-- Principais responsabilidades.
-- Promoções ou evolução de carreira.
-- Projetos relevantes.
-- Indicadores acompanhados.
-- Nível real de conhecimento em cada competência.
-- Motivo de experiências muito curtas.
-- Disponibilidade para viagens ou mudança.
-- Cursos em andamento.
-- Idiomas e nível verdadeiro de domínio.
-- Diferenciais que não aparecem no currículo.
+- Qual era o produto, problema e responsabilidade direta?
+- Qual era a escala: usuários, pedidos, receita, equipe, projetos ou volume processado?
+- O que melhorou e como foi medido?
+- Quais ferramentas foram usadas de fato naquele contexto?
+- Houve promoção, liderança, decisão técnica ou contato com clientes?
+- Como explicar sobreposições, lacunas ou passagens curtas?
+- Qual é o nível real do idioma e em que contexto ele foi usado?
 
-**Base de fatos (`historias.md`):** Antes de perguntar, consulte `historias.md` (ver skill `historias`) para recuperar números, conquistas e experiências já relatados em interações anteriores; não repita perguntas já respondidas. Ao longo da auditoria, registre em `historias.md` toda informação nova revelada pelo usuário, marcando o que ainda precisa ser confirmado.
+Ajude o usuário a localizar uma medida verificável, mas não converta uma estimativa em fato. Marque estimativas e pontos ainda não confirmados. Aguarde respostas que sejam necessárias para a versão final.
 
-Se a pessoa não souber números exatos, ajude a estimar resultados de forma responsável, deixando claro que nada pode ser inventado. **Aguarde as respostas antes de produzir a versão final.**
+## 3. Reescrita
 
-### ETAPA 3 — Reescrita Completa
+Crie uma proposta completa com, quando aplicável: cabeçalho e contatos, título profissional, resumo, experiência em ordem cronológica inversa, projetos, formação, competências, certificações e idiomas.
 
-Após receber as respostas, reescreva o CV base completo, contendo quando aplicável:
+- Use uma coluna, seções convencionais e ordem ajustada ao momento de carreira.
+- Omita seções sem conteúdo. Liderança, projetos e certificações não são obrigatórios.
+- Use bullets curtos com ação, contexto e resultado comprovável. Evite rótulos repetitivos dentro de cada bullet.
+- Use presente para atividades atuais e passado para experiências encerradas, sem pronomes pessoais.
+- Mantenha entre uma e duas páginas, salvo trajetória que justifique mais.
+- Use palavras-chave de modo natural. Não repita listas para simular aderência.
+- Preserve lacunas e limites reais da experiência; explique-os com clareza quando necessário.
 
-- Nome completo.
-- Cidade e estado.
-- Telefone, e-mail e LinkedIn.
-- Título profissional alinhado ao objetivo.
-- Resumo profissional estratégico.
-- Competências técnicas.
-- Experiências profissionais em ordem cronológica inversa.
-- Principais atividades e entregas de cada experiência.
-- Resultados mensuráveis e conquistas comprováveis.
-- Formação acadêmica.
-- Cursos e certificações relevantes.
-- Idiomas.
-- Informações complementares relevantes.
+## 4. Artefatos da auditoria
 
-#### Regras para a reescrita
+Crie `auditorias/{YYMMDDHHMM}/` e use o mesmo carimbo em todos os nomes:
 
-- Use linguagem profissional, clara, humana e convincente.
-- Não use clichês como "proativo", "dinâmico", "perfeccionista", "trabalho bem em equipe" ou "em busca de novos desafios" sem evidências.
-- Não escreva em primeira pessoa.
-- Não transforme o resumo profissional em lista de adjetivos.
-- Comece as atividades com verbos fortes e variados.
-- Destaque responsabilidades, contexto, complexidade, autonomia e resultados.
-- Dê prioridade ao que for relevante para a vaga/cargo pretendido.
-- Reduza ou elimine informações antigas e pouco relacionadas ao objetivo atual.
-- Não inclua CPF, RG, estado civil, número de filhos, foto ou endereço completo.
-- Não use tabelas, colunas, gráficos, barras de nível, ícones ou elementos que prejudiquem a leitura pelo ATS.
-- Use palavras-chave naturalmente, sem copiar descrições de forma artificial.
-- Organize para que o mais importante seja percebido rapidamente.
-- Busque manter entre uma e duas páginas (exceto quando a trajetória justificar mais).
-- Não exagere a senioridade nem esconda lacunas; apresente a melhor forma ética de tratá-las.
+- `{slug-nome}-auditoria-CV-{YYMMDDHHMM}.md`: diagnóstico, perguntas respondidas, mudanças, pendências e parecer;
+- `{slug-nome}-auditoria-CV-{YYMMDDHHMM}.tex`: proposta de currículo;
+- `{slug-nome}-auditoria-CV-{YYMMDDHHMM}.pdf`: compilação da proposta.
 
-#### Diretório de saída
+Use como base visual, nesta ordem: o LaTeX existente em `base/pt/`, um template fornecido pelo usuário ou `template/cv.tex`. Se houver uma razão técnica ou editorial para escolher outra opção, registre a justificativa. Não crie arquivos em `vagas/` e não substitua `base/` durante a auditoria.
 
-- Crie o diretório `auditorias/` na raiz do projeto (se não existir).
-- Para cada auditoria, crie uma subpasta única com carimbo de data e hora no momento da criação, no formato `auditorias/{YYMMDDHHMM}/` (ex: `auditorias/2609161205/`).
-- Salve o resultado da auditoria dentro dessa subpasta, usando o mesmo carimbo na nomenclatura:
-  `{slug-nome}-auditoria-CV-{YYMMDDHHMM}.md` (ex: `auditorias/2609161205/otavio-auditoria-CV-2609161205.md`).
-- Use o mesmo carimbo `{YYMMDDHHMM}` também nos arquivos auxiliares (`.tex`, `.pdf`), mantendo tudo na mesma subpasta.
-- **Não modifique os arquivos-base** (`base/cv.md`, `.tex` base) nem crie arquivos em `vagas/` (isso é do `cv-maker`).
-- Se for feita uma reescrita em LaTeX, salve também nessa subpasta e recompile com `pdflatex`, revisando os logs em busca de avisos graves ou erros.
+O arquivo Markdown da auditoria deve conter uma seção obrigatória chamada `Template utilizado`, informando:
 
-### ETAPA 4 — Parecer Final
+- caminho ou origem exata do template;
+- posição dele na ordem de preferência acima;
+- motivo da escolha e de qualquer desvio da ordem padrão;
+- se foi usado sem alterações ou adaptado;
+- alterações visuais ou técnicas relevantes feitas na cópia da auditoria;
+- atribuição e licença, quando o template vier de uma fonte externa.
 
-Entregue ao usuário:
+Compile com `pdflatex`. Corrija erros, texto cortado e avisos `Overfull \\hbox` relevantes. Extraia o texto do PDF e confirme que nome, contatos, seções, empresas, cargos e datas aparecem em ordem compreensível.
 
-1. **Currículo reescrito** — versão completa.
-2. **Principais melhorias realizadas** — o que foi corrigido e por que a nova versão é mais forte.
-3. **Pontos que ainda precisam ser comprovados** — o que validar/detalhar numa entrevista.
-4. **Orientações para personalização** — quais partes adaptar para cada vaga.
-5. **Nota final** — nova nota de 0 a 10, comparada com a nota original.
-6. **Parecer sincero:**
-   - Este currículo tem força para gerar entrevistas?
-   - Para quais cargos o perfil está realmente preparado?
-   - Para quais ainda não está preparado?
-   - Qual é o maior diferencial do candidato?
-   - Qual é a principal fragilidade?
-   - O que ainda precisa melhorar para competir com os melhores?
-   - Se o perfil não for qualificado para o cargo desejado, diga claramente e recomende cargos mais compatíveis.
+## 5. Entrega
+
+Informe:
+
+1. nota anterior e nota da proposta;
+2. principais correções e por que melhoram o documento;
+3. afirmações que ainda precisam ser comprovadas;
+4. cargos que o histórico sustenta e cargos que ainda não sustenta;
+5. maior diferencial e principal fragilidade;
+6. arquivos gerados e quais arquivos o usuário pode adotar manualmente como nova base.
+
+Nunca aplique a proposta diretamente em `base/`, mesmo quando o usuário pedir uma atualização. Copie a versão aprovada para `propostas-base/{YYMMDDHHMM}/` e deixe a adoção final para o usuário.

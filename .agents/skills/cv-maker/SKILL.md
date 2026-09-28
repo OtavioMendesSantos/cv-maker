@@ -20,8 +20,14 @@ Sempre que o usuário fornecer a descrição de uma vaga (ou um link) e solicita
 
 Siga este passo a passo rigorosamente:
 
+### 0. Verificação da base
+
+- Verifique se `base/cv.md` existe antes de analisar a vaga.
+- Se não existir, use a skill `onboarding`. Conclua a proposta, obtenha a aprovação do usuário e crie a base inicial antes de adaptar o conteúdo para a vaga.
+- Se `base/cv.md` já existir, trate todo o diretório `base/` como somente leitura. Nunca complete, corrija ou substitua seus arquivos durante a criação de um currículo para vaga.
+
 ### 1. Análise ATS e da Vaga
-- Leia o currículo base do usuário (geralmente `base/cv.md` ou o `.tex` base na pasta `base/`).
+- Leia `base/cv.md` como fonte factual e o `.tex` mais recente em `base/pt/` como referência visual.
 - **Extraia o nome do usuário** do cabeçalho `# <Nome>` de `base/cv.md` e use-o em conteúdos e nomes de arquivos. Nunca assuma ou hardcode o nome.
 - Leia a descrição da vaga.
 - Faça a análise de compatibilidade (Match Score) comparando as palavras-chave.
@@ -44,6 +50,7 @@ Siga este passo a passo rigorosamente:
 - **Ordem cronológica das experiências:** Na seção "Experiências Profissionais", as experiências devem SEMPRE seguir ordem cronológica da mais recente para a mais antiga (período de maior data para menor data), independentemente da aderência à vaga.
 - Reordene os tópicos dentro de cada experiência para que as conquistas mais aderentes à vaga fiquem no topo de cada lista.
 - Utilize os mesmos pacotes e estrutura visual do `.tex` base do usuário.
+- **Preâmbulo pt-BR obrigatório nos currículos em português:** garanta `\usepackage[T1]{fontenc}`, `\usepackage[brazilian]{babel}`, `\usepackage{microtype}` e os ajustes `\tolerance=2000` e `\emergencystretch=2em`. Em distribuições antigas, `brazil` pode substituir `brazilian`. Sem esses pacotes, o LaTeX usa padrões de hifenização do inglês e quebra palavras em português errado (ex: `at-uando`). Use `\hyphenation{...}` só para exceções pontuais, nunca como substituto do `babel`.
 
 ### 5. Compilação
 - Após criar o `.tex`, execute proativamente o comando `pdflatex <nome-do-arquivo>.tex` no diretório da vaga para gerar o PDF.

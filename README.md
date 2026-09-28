@@ -1,12 +1,14 @@
 # CV Maker
 
-Um sistema para gerenciar e gerar currículos em LaTeX usando o opencode. O repositório funciona como um template: você insere seus dados e a IA gera versões específicas para cada vaga.
+Um sistema para criar, revisar e adaptar currículos em LaTeX usando um agente de código. O repositório inclui um modelo inicial: quem ainda não tem currículo pode fornecer suas informações e gerar a base antes de criar versões para vagas.
 
 ## Como funciona
 
 A configuração fica na pasta `.agents/`, que contém as skills (como a `cv-maker` e a `humanizer`) e as regras do workspace (`rules/curriculos.md`).
 
-Quando você fornece a descrição de uma vaga para a skill `cv-maker`, a IA:
+No primeiro uso, a skill `onboarding` prepara uma proposta a partir de texto livre, perguntas guiadas ou um PDF exportado do LinkedIn. Depois da aprovação do usuário, ela cria `base/cv.md` e o currículo LaTeX. A partir daí, `base/` é somente leitura para as skills.
+
+Quando você fornece a descrição de uma vaga para a skill `cv-maker`, o agente:
 
 1. Compara a vaga com o seu currículo base e calcula a compatibilidade (_Match Score_).
 2. Cria um arquivo `.tex` adaptado para a vaga, utilizando apenas suas experiências reais.
@@ -16,19 +18,34 @@ Quando você fornece a descrição de uma vaga para a skill `cv-maker`, a IA:
 ## Estrutura do projeto
 
 - `.agents/`: Regras e skills que o opencode utiliza. Este diretório deve ser versionado.
+- `template/`: Modelos versionados usados apenas quando o usuário ainda não tem uma base própria.
+  - `cv.md`: Estrutura dos dados e fatos do currículo.
+  - `cv.tex`: Layout LaTeX de uma coluna, sem tabelas ou elementos gráficos.
 - `base/`: (Ignorado pelo Git). Coloque seus dados aqui.
   - `cv.md`: Suas experiências e habilidades. A primeira linha (`# Seu Nome`) define a identidade usada nos currículos e nos nomes de arquivo.
   - `pt/` e `en/`: Modelos em LaTeX (`.tex`) para a formatação visual.
 - `vagas/`: (Ignorado pelo Git). Diretório onde a IA salva os currículos gerados.
+- `onboarding/`: Propostas temporárias produzidas antes da criação inicial de `base/`.
+- `propostas-base/`: Sugestões posteriores de atualização que o usuário pode adotar manualmente.
 - `overview.md`: (Ignorado pelo Git). Histórico gerado pela IA.
 - `opencode.example.json`: Modelo de configuração do opencode. Copie para `opencode.json` e preencha seus dados.
 
 ## Configuração
 
-1. Clone o repositório e crie a pasta `base/` com o arquivo `cv.md` (começando por `# Seu Nome`) e seus modelos `.tex`.
+1. Clone o repositório.
 2. Copie `opencode.example.json` para `opencode.json` e configure seu provedor de IA e, se quiser, o servidor MCP do Hirely com a sua API key. O `opencode.json` é ignorado pelo Git (não versionar chaves).
-3. Mantenha a pasta `.agents/` no repositório.
-4. Execute o opencode, acione a skill `cv-maker` e cole a descrição da vaga.
+3. Se já tiver currículo, coloque o conteúdo em `base/cv.md` e o modelo visual em `base/pt/`. Se não tiver, acione `onboarding` e descreva sua trajetória, cole o conteúdo existente ou forneça o PDF exportado do LinkedIn.
+4. Para uma vaga específica, acione `cv-maker` e forneça a descrição ou o link da vaga.
+
+### O papel dos dois templates
+
+`template/cv.md` organiza a fonte de verdade: experiências, datas, resultados, formação e competências. `template/cv.tex` controla apenas a apresentação do PDF. Essa separação permite trocar o visual sem perder os fatos e evita extrair experiências de um arquivo de layout.
+
+O LaTeX padrão prioriza leitura humana e parsing por ATS: uma coluna, títulos convencionais, nenhum ícone, nenhuma foto e nenhum bloco em tabela. Se o usuário já tiver um modelo próprio, ele continua sendo a primeira opção.
+
+### Fontes de verdade
+
+`base/cv.md` é a fonte factual principal. Os arquivos de `base/pt/` definem a apresentação base e `base/originais/` preserva documentos fornecidos pelo usuário. Depois do onboarding, as skills só podem ler esses arquivos. Auditorias e sugestões são geradas fora de `base/` e nunca substituem a fonte de verdade automaticamente.
 
 ### Identidade do usuário
 
