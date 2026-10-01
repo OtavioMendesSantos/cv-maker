@@ -43,6 +43,7 @@ Thumbs.db
 opencode.json
 base/
 examples/
+/.codex/
 
 # Outputs gerados em runtime pela IA
 vagas/
@@ -51,4 +52,5 @@ auditorias/
 historias.md
 /onboarding/
 /propostas-base/
+
 
