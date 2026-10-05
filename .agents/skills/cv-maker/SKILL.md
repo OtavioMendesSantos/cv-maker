@@ -56,14 +56,21 @@ Siga este passo a passo rigorosamente:
 - Após criar o `.tex`, execute proativamente o comando `pdflatex <nome-do-arquivo>.tex` no diretório da vaga para gerar o PDF.
 
 ### 6. Revisão de Qualidade e Formatação
-- Analise os logs do compilador `pdflatex` em busca de warnings graves (ex: `Overfull \hbox` que corte o texto) ou erros de sintaxe.
-- Leia e revise mentalmente o conteúdo gerado em busca de trechos mal formulados ou que pareçam artificiais.
-- Corrija o arquivo `.tex` caso haja erros, e recompile se necessário.
+- Faça estas verificações em todo currículo criado ou alterado, usando o PDF produzido pela última compilação:
+  - **Conteúdo e fatos:** confira nome, contatos, cargos, empresas, datas, ferramentas e resultados contra `base/cv.md` e os relatos confirmados em `historias.md`. Remova placeholders e revise repetições, trechos artificiais e métricas sem contexto ou confirmação.
+  - **Compilação:** analise os logs do `pdflatex` e corrija erros e avisos relevantes, como `Overfull \hbox` ou `Overfull \vbox` que indiquem conteúdo fora das margens.
+  - **Inspeção visual obrigatória:** renderize o PDF em imagens (por exemplo, com `pdftoppm -png`) e abra todas as páginas para conferir cortes, sobreposições, legibilidade, espaçamento, títulos isolados e quebras de página. A compilação sem erros não substitui essa inspeção.
+  - **Texto extraído obrigatório:** extraia o texto do PDF (por exemplo, com `pdftotext`) e leia o resultado. Confirme que nome, contatos, seções, empresas, cargos e datas estão completos, com acentos corretos e em ordem compreensível, sem mistura entre experiências ou perda de conteúdo.
+- Confira a quantidade de páginas e elimine páginas vazias ou quase vazias por problemas de layout. Priorize uma página pela seleção do conteúdo; use duas quando a trajetória justificar, preservando a legibilidade.
+- Salve imagens e texto de conferência em um diretório temporário. Corrija somente a cópia em `vagas/`; nunca altere `base/` para resolver problemas do documento gerado.
+- Após qualquer correção no `.tex`, recompile e repita a inspeção visual e a extração de texto sobre o PDF atualizado. Só considere a revisão concluída quando não houver problemas relevantes pendentes.
+- Se uma ferramenta de renderização, visualização ou extração estiver indisponível, tente uma alternativa disponível. Se a verificação continuar inviável, informe exatamente qual etapa ficou pendente e não declare o PDF revisado ou pronto para envio.
 
 ### 7. Validação Final ATS
 - Com o currículo finalizado, realize uma última verificação cruzando o documento recém-criado com a descrição da vaga original.
 - Calcule e informe ao usuário o novo Match Score (que deve ser alto).
 - Se algum ponto importante tiver ficado de fora por falta de experiência prévia, apenas avise o usuário para alinhamento de expectativas.
+- Na entrega, informe a quantidade de páginas, o resultado da revisão visual e da extração de texto, além de eventuais pendências. A extração compreensível ajuda a identificar riscos de parsing, mas não certifica compatibilidade com todos os ATS.
 
 ### 8. Atualização do Overview
 - Edite o arquivo `overview.md`.
